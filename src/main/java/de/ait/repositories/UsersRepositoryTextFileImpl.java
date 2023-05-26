@@ -53,8 +53,8 @@ public class UsersRepositoryTextFileImpl implements UsersRepository {
             System.out.println("Введите рост пользователя: ");
             double height = scanner.nextDouble();
             String newUser = firstName + "|" + lastName + "|" + age + "|" + height;
-            bufferedWriter.newLine();
             bufferedWriter.write(newUser);
+            bufferedWriter.newLine();
 
         } catch (IOException e){
             System.out.println("Произошла ошибка");
