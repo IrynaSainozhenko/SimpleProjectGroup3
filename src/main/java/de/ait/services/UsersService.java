@@ -10,4 +10,6 @@ public interface UsersService {
     double getAverageAgeOfUsers();
 
     int getAgeOfTheHighest();
+
+    String getShortestPersonFullName();
 }

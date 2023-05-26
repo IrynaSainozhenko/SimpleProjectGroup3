@@ -52,14 +52,17 @@ public class Main {
                     System.out.println("Выводим средний возраст всех пользователей");
                     double averageAge = usersService.getAverageAgeOfUsers();
                     System.out.println(averageAge);
-
                     break;
                 case 5:
                     System.out.println("Выводим возраст самого высокого человека");
                     double maxHeight = usersService.getAgeOfTheHighest();
                     System.out.println(maxHeight);
                     break;
-
+                case 6:
+                    System.out.println("Выводим имя и фамилию самого низкого человека");
+                    String firstNameAndLastName = usersService.getShortestPersonFullName();
+                    System.out.println(firstNameAndLastName);
+                    break;
                 case 0:
                     System.out.println("Выход");
                     System.exit(0);

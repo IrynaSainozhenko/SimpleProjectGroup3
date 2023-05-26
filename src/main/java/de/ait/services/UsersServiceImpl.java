@@ -58,4 +58,18 @@ public class UsersServiceImpl implements UsersService {
         double maxHeight = Collections.max(userHeight.keySet());
         return userHeight.get(maxHeight);
     }
+    @Override
+    public String getShortestPersonFullName() {
+        List<User> users = usersRepository.findAll();
+        if (users.isEmpty()) {
+            return "";
+        }
+        User shortestUser = users.get(0);
+        for (int i = 1; i < users.size(); i++) {
+            if (users.get(i).getHeight() < shortestUser.getHeight()) {
+                shortestUser = users.get(i);
+            }
+        }
+        return shortestUser.getFirstName() + " " + shortestUser.getLastName();
+    }
 }
