@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UsersRepository {
     List<User> findAll();
-    public void saveNewUser();
+    public void saveNewUser(User user);
 }

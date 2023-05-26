@@ -40,7 +40,7 @@ public class UsersRepositoryTextFileImpl implements UsersRepository {
     }
 
     @Override
-    public void saveNewUser() {
+    public void saveNewUser(User user) {
         try(
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))){
             Scanner scanner = new Scanner(System.in);

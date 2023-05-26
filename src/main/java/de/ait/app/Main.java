@@ -46,7 +46,8 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Сохраняем нового пользователя");
-                    usersRepository.saveNewUser();
+                    //usersRepository.saveNewUser();
+                    //usersService.addUser();
                     break;
                 case 4:
                     System.out.println("Выводим средний возраст всех пользователей");
