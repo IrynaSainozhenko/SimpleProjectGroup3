@@ -37,4 +37,15 @@ public class UsersServiceImpl implements UsersService {
 
         return userAge.get(maxAge);
     }
+
+    @Override
+    public double getAverageAgeOfUsers() {
+        List<User> users = usersRepository.findAll();
+        double tempSum = 0.0;
+        if (users.size() == 0)
+            return 0.0;
+        for (User user : users)
+            tempSum += user.getAge();
+        return tempSum/users.size();
+    }
 }
