@@ -2,11 +2,10 @@ package de.ait.repositories;
 
 import de.ait.models.User;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class UsersRepositoryTextFileImpl implements UsersRepository {
 
@@ -42,7 +41,24 @@ public class UsersRepositoryTextFileImpl implements UsersRepository {
 
     @Override
     public void saveNewUser() {
+        try(
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите имя пользователя: ");
+            String firstName = scanner.nextLine();
+            System.out.println("Введите фамилию пользователя: ");
+            String lastName = scanner.nextLine();
+            System.out.println("Введите возраст пользователя: ");
+            int age = scanner.nextInt();
+            System.out.println("Введите рост пользователя: ");
+            double height = scanner.nextDouble();
+            String newUser = firstName + "|" + lastName + "|" + age + "|" + height;
+            bufferedWriter.newLine();
+            bufferedWriter.write(newUser);
 
+        } catch (IOException e){
+            System.out.println("Произошла ошибка");
+        }
     }
 
     private static User parseLine(String line) {

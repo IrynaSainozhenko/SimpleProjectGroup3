@@ -44,6 +44,10 @@ public class Main {
                     String lastName = usersService.getLastNameOfMostAging();
                     System.out.println(lastName);
                     break;
+                case 3:
+                    System.out.println("Сохраняем нового пользователя");
+                    usersRepository.saveNewUser();
+                    break;
                 case 4:
                     System.out.println("Выводим средний возраст всех пользователей");
                     double averageAge = usersService.getAverageAgeOfUsers();
