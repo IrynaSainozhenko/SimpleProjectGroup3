@@ -7,7 +7,7 @@ public class User {
     private double height;
 
     public User(String firstName, String lastName, int age, double height) {
-        // TODO: сделать проверки входных данных
+        //TODO: сделать проверки входных данных
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;

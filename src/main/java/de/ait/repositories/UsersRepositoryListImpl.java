@@ -19,4 +19,9 @@ public class UsersRepositoryListImpl implements UsersRepository {
 
         return users;
     }
+
+    @Override
+    public void saveNewUser() {
+
+    }
 }
