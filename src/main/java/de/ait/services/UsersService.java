@@ -8,4 +8,6 @@ public interface UsersService {
     String getLastNameOfMostAging();
 
     double getAverageAgeOfUsers();
+
+    int getAgeOfTheHighest();
 }

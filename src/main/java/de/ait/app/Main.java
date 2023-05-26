@@ -54,6 +54,11 @@ public class Main {
                     System.out.println(averageAge);
 
                     break;
+                case 5:
+                    System.out.println("Выводим возраст самого высокого человека");
+                    double maxHeight = usersService.getAgeOfTheHighest();
+                    System.out.println(maxHeight);
+                    break;
 
                 case 0:
                     System.out.println("Выход");
