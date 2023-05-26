@@ -1,5 +1,7 @@
 package de.ait.services;
 
+import de.ait.models.User;
+
 import java.util.List;
 
 public interface UsersService {
@@ -12,4 +14,6 @@ public interface UsersService {
     int getAgeOfTheHighest();
 
     String getShortestPersonFullName();
+
+    User createNewUser(String firstNameUser, String lastNameUser, int ageUser, double heightUser);
 }

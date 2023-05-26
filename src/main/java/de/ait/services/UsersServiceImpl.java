@@ -38,6 +38,11 @@ public class UsersServiceImpl implements UsersService {
         return userAge.get(maxAge);
     }
 
+    public User createNewUser(String firstNameUser, String lastNameUser, int ageUser, double heightUser){
+        return new User(firstNameUser, lastNameUser, ageUser, heightUser);
+    }
+
+
     @Override
     public double getAverageAgeOfUsers() {
         List<User> users = usersRepository.findAll();

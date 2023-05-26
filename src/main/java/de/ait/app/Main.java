@@ -1,5 +1,6 @@
 package de.ait.app;
 
+import de.ait.models.User;
 import de.ait.repositories.UsersRepository;
 import de.ait.repositories.UsersRepositoryListImpl;
 import de.ait.repositories.UsersRepositoryTextFileImpl;
@@ -7,6 +8,9 @@ import de.ait.services.UsersService;
 import de.ait.services.UsersServiceImpl;
 import org.w3c.dom.ls.LSOutput;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +24,6 @@ public class Main {
         while (true) {
             System.out.println("1. Вывести имена всех пользователей");
             System.out.println("2. Вывести фамилию самого взрослого пользователя");
-
             System.out.println("3. Сохранить нового пользователя");
             System.out.println("4. Вывести средний возраст всех пользователей");
             System.out.println("5. Вывести возраст самого высокого человека");
@@ -46,8 +49,18 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Сохраняем нового пользователя");
-                    //usersRepository.saveNewUser();
-                    //usersService.addUser();
+                    System.out.println("Введите имя пользователя: ");
+                    String firstNameUser = scanner.nextLine();
+                    System.out.println("Введите фамилию пользователя: ");
+                    String lastNameUser = scanner.nextLine();
+                    System.out.println("Введите возраст пользователя: ");
+                    int ageUser = scanner.nextInt();
+                    System.out.println("Введите рост пользователя: ");
+                    double heightUser = scanner.nextDouble();
+
+                    User newUser = usersService.createNewUser(firstNameUser, lastNameUser, ageUser, heightUser);
+                    usersRepository.saveNewUser(newUser);
+
                     break;
                 case 4:
                     System.out.println("Выводим средний возраст всех пользователей");

@@ -1,6 +1,4 @@
 Marsel|Sidikov|29|1.85
 Maxim|Ivanov|19|1.79
 Ruslan|Kochkin|41|1.83
-Kirill|Petrov|55|1.90
-Aleksandr|Yakovunets|39|1.78
-Elias|Falke|33|1.75
+Kirill|Petrov|55|1.9

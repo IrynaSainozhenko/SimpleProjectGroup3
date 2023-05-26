@@ -1,6 +1,7 @@
 package de.ait.repositories;
 
 import de.ait.models.User;
+import de.ait.services.UsersServiceImpl;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -41,22 +42,17 @@ public class UsersRepositoryTextFileImpl implements UsersRepository {
 
     @Override
     public void saveNewUser(User user) {
-        try(
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите имя пользователя: ");
-            String firstName = scanner.nextLine();
-            System.out.println("Введите фамилию пользователя: ");
-            String lastName = scanner.nextLine();
-            System.out.println("Введите возраст пользователя: ");
-            int age = scanner.nextInt();
-            System.out.println("Введите рост пользователя: ");
-            double height = scanner.nextDouble();
-            String newUser = firstName + "|" + lastName + "|" + age + "|" + height;
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))){
+
+            String newUser = user.getFirstName() + "|" +
+                    user.getLastName() + "|" +
+                    user.getAge() + "|" +
+                    user.getHeight();
             bufferedWriter.write(newUser);
             bufferedWriter.newLine();
 
-        } catch (IOException e){
+        }catch(IOException e){
             System.out.println("Произошла ошибка");
         }
     }
