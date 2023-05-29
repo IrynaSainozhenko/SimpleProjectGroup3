@@ -9,19 +9,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UsersRepositoryTextFileImpl implements UsersRepository {
-
     private String fileName;
 
     public UsersRepositoryTextFileImpl(String fileName) {
         this.fileName = fileName;
     }
 
-
-
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-
 
         try (FileReader fileReader = new FileReader(fileName); 
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
@@ -36,14 +32,14 @@ public class UsersRepositoryTextFileImpl implements UsersRepository {
         } catch (IOException e) {
             System.err.println("Произошла ошибка");
         }
-
         return users;
     }
 
     @Override
     public void saveNewUser(User user) {
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, true))){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(
+                new FileWriter(fileName, true))){
 
             String newUser = user.getFirstName() + "|" +
                     user.getLastName() + "|" +
