@@ -11,6 +11,7 @@ import org.w3c.dom.ls.LSOutput;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,57 +32,91 @@ public class Main {
 
             System.out.println("0. Выход");
 
-            int command = scanner.nextInt();
-            scanner.nextLine();
+            int command = 0;
+            if(scanner.hasNextInt()){
+                command = scanner.nextInt();
+                scanner.nextLine();
+                switch (command) {
+                    case 1:
+                        System.out.println("Выводим имена пользователей...");
+                        List<String> names = usersService.getNames();
+                        for (String name : names) {
+                            System.out.println(name);
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Выводим самого взрослого пользователя");
+                        String lastName = usersService.getLastNameOfMostAging();
+                        System.out.println(lastName);
+                        break;
+                    case 3:
+                        System.out.println("Сохраняем нового пользователя");
+                        System.out.println("Введите имя пользователя: ");
+                        String firstNameUser = scanner.nextLine();
 
-            switch (command) {
-                case 1:
-                    System.out.println("Выводим имена пользователей...");
-                    List<String> names = usersService.getNames();
-                    for (String name : names) {
-                        System.out.println(name);
-                    }
-                    break;
-                case 2:
-                    System.out.println("Выводим самого взрослого пользователя");
-                    String lastName = usersService.getLastNameOfMostAging();
-                    System.out.println(lastName);
-                    break;
-                case 3:
-                    System.out.println("Сохраняем нового пользователя");
-                    System.out.println("Введите имя пользователя: ");
-                    String firstNameUser = scanner.nextLine();
-                    System.out.println("Введите фамилию пользователя: ");
-                    String lastNameUser = scanner.nextLine();
-                    System.out.println("Введите возраст пользователя: ");
-                    int ageUser = scanner.nextInt();
-                    System.out.println("Введите рост пользователя: ");
-                    double heightUser = scanner.nextDouble();
+                        System.out.println("Введите фамилию пользователя: ");
+                        String lastNameUser = scanner.nextLine();
 
-                    User newUser = usersService.createNewUser(firstNameUser, lastNameUser, ageUser, heightUser);
-                    usersRepository.saveNewUser(newUser);
+                        System.out.println("Введите возраст пользователя: ");
+                        int ageUser = 0;
+                        if (scanner.hasNextInt()) {
+                            ageUser = scanner.nextInt();
+                            if(ageUser < 1){
+                                System.out.println("Возраст не может быть отрицательным " +
+                                        "или равным '0'!");
+                                System.out.println("Перезапустите программу!");
+                                return;
+                            }
+                        } else {
+                            System.out.println("Введенное значение не является числом!");
+                            System.out.println("Перезапустите программу!");
+                            return;
+                        }
 
-                    break;
-                case 4:
-                    System.out.println("Выводим средний возраст всех пользователей");
-                    double averageAge = usersService.getAverageAgeOfUsers();
-                    System.out.println(averageAge);
-                    break;
-                case 5:
-                    System.out.println("Выводим возраст самого высокого человека");
-                    double maxHeight = usersService.getAgeOfTheHighest();
-                    System.out.println(maxHeight);
-                    break;
-                case 6:
-                    System.out.println("Выводим имя и фамилию самого низкого человека");
-                    String firstNameAndLastName = usersService.getShortestPersonFullName();
-                    System.out.println(firstNameAndLastName);
-                    break;
-                case 0:
-                    System.out.println("Выход");
-                    System.exit(0);
-                default:
-                    System.out.println("Команда не распознана");
+                        System.out.println("Введите рост пользователя: ");
+                        double heightUser = 0;
+                        if (scanner.hasNextDouble()) {
+                            heightUser = scanner.nextDouble();
+                            if (heightUser < 1){
+                                System.out.println("Возраст не может быть отрицательным " +
+                                        "или равным '0'!");
+                                System.out.println("Перезапустите программу!");
+                                return;
+                            }
+                        } else {
+                            System.out.println("Введенное значение не является числом!");
+                            System.out.println("Перезапустите программу!");
+                            return;
+                        }
+
+                        User newUser = usersService.createNewUser(firstNameUser, lastNameUser, ageUser, heightUser);
+                        usersRepository.saveNewUser(newUser);
+                        break;
+                    case 4:
+                        System.out.println("Выводим средний возраст всех пользователей");
+                        double averageAge = usersService.getAverageAgeOfUsers();
+                        System.out.println(averageAge);
+                        break;
+                    case 5:
+                        System.out.println("Выводим возраст самого высокого человека");
+                        double maxHeight = usersService.getAgeOfTheHighest();
+                        System.out.println(maxHeight);
+                        break;
+                    case 6:
+                        System.out.println("Выводим имя и фамилию самого низкого человека");
+                        String firstNameAndLastName = usersService.getShortestPersonFullName();
+                        System.out.println(firstNameAndLastName);
+                        break;
+                    case 0:
+                        System.out.println("Выход");
+                        System.exit(0);
+                    default:
+                        System.out.println("Команда не распознана");
+                }
+            } else{
+                System.out.println("Введенное значение не является числом!");
+                System.out.println("Перезапустите программу!");
+                return;
             }
         }
     }

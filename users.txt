@@ -3,3 +3,4 @@ Maxim|Ivanov|19|1.79
 Ruslan|Kochkin|41|1.83
 Kirill|Petrov|55|1.9
 Alexandr|Belov|38|1.88
+Aleksandr|Yakovunets|39|1.78
