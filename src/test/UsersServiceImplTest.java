@@ -27,6 +27,4 @@ class UsersServiceImplTest {
         int expected = 30;
         assertEquals(expected,actual);
     }
-
-
 }

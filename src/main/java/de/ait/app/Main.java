@@ -16,7 +16,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
+
     public static void main(String[] args) {
+
+        System.out.println(ANSI_CYAN +
+                "\nДобро пожаловать в приложение разработанное участниками 3 группы");
+        System.out.println(ANSI_PURPLE +
+                "\nДля продолжения выберите нужный вариант из списка:" + ANSI_RESET);
+
         Scanner scanner = new Scanner(System.in);
         UsersRepository usersRepository = new UsersRepositoryTextFileImpl("users.txt");
         UsersRepository testUserRepository = new UsersRepositoryListImpl();
@@ -29,7 +41,6 @@ public class Main {
             System.out.println("4. Вывести средний возраст всех пользователей");
             System.out.println("5. Вывести возраст самого высокого человека");
             System.out.println("6. Вывести имя и фамилию самого низкого человека");
-
             System.out.println("0. Выход");
 
             int command = 0;
@@ -38,19 +49,21 @@ public class Main {
                 scanner.nextLine();
                 switch (command) {
                     case 1:
-                        System.out.println("Выводим имена пользователей...");
+                        System.out.println(ANSI_BLUE + "Выводим имена всех пользователей" + ANSI_RESET);
                         List<String> names = usersService.getNames();
                         for (String name : names) {
                             System.out.println(name);
                         }
                         break;
+
                     case 2:
-                        System.out.println("Выводим самого взрослого пользователя");
+                        System.out.println(ANSI_BLUE + "Выводим самого взрослого пользователя" + ANSI_RESET);
                         String lastName = usersService.getLastNameOfMostAging();
                         System.out.println(lastName);
                         break;
+
                     case 3:
-                        System.out.println("Сохраняем нового пользователя");
+                        System.out.println(ANSI_BLUE + "Сохраняем нового пользователя" + ANSI_RESET);
                         System.out.println("Введите имя пользователя: ");
                         String firstNameUser = scanner.nextLine();
 
@@ -92,23 +105,27 @@ public class Main {
                         User newUser = usersService.createNewUser(firstNameUser, lastNameUser, ageUser, heightUser);
                         usersRepository.saveNewUser(newUser);
                         break;
+
                     case 4:
-                        System.out.println("Выводим средний возраст всех пользователей");
+                        System.out.println(ANSI_BLUE + "Выводим средний возраст всех пользователей"+ ANSI_RESET);
                         double averageAge = usersService.getAverageAgeOfUsers();
                         System.out.println(averageAge);
                         break;
+
                     case 5:
-                        System.out.println("Выводим возраст самого высокого человека");
+                        System.out.println(ANSI_BLUE + "Выводим возраст самого высокого человека"+ ANSI_RESET);
                         double maxHeight = usersService.getAgeOfTheHighest();
                         System.out.println(maxHeight);
                         break;
+
                     case 6:
-                        System.out.println("Выводим имя и фамилию самого низкого человека");
+                        System.out.println(ANSI_BLUE + "Выводим имя и фамилию самого низкого человека"+ ANSI_RESET);
                         String firstNameAndLastName = usersService.getShortestPersonFullName();
                         System.out.println(firstNameAndLastName);
                         break;
+
                     case 0:
-                        System.out.println("Выход");
+                        System.out.println(ANSI_BLUE + "Выход"+ ANSI_RESET);
                         System.exit(0);
                     default:
                         System.out.println("Команда не распознана");
