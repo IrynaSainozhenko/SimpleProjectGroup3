@@ -24,4 +24,10 @@ class UsersServiceImplTest {
         List<String> expected = Arrays.asList("User1", "User2", "User3");
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    void getAgeOfTheHighest(){
+        int actual = usersService.getAgeOfTheHighest();
+        int expected = 30;
+        assertEquals(expected,actual);
+    }
 }
