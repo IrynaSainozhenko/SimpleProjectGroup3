@@ -60,4 +60,10 @@ class UsersServiceImplTest {
         assertEquals(expected, actuals);
     }
 
+    @Test
+    public void createNewUser(){
+        User actuals = usersService.createNewUser(
+                "Nikolay", "Petrov", 60, 1.90);
+        User expected = new User("Nikolay", "Petrov", 60, 1.90);
+    }
 }
