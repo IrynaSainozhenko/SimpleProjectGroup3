@@ -8,12 +8,11 @@ import java.util.*;
 public class UsersServiceImpl implements UsersService {
     private UsersRepository usersRepository;
 
+
     public UsersServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
-
-// 1. Вывести имена всех пользователей
     @Override
     public List<String> getNames() {
         List<User> users = usersRepository.findAll();
@@ -26,7 +25,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-//    2. Вывести фамилию самого взрослого пользователя
     @Override
     public String getLastNameOfMostAging() {
         List<User> users = usersRepository.findAll();
@@ -39,8 +37,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-//3. Сохранить нового пользователя
-
     public User createNewUser(
             String firstNameUser,
             String lastNameUser,
@@ -50,7 +46,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-//4. Вывести средний возраст всех пользователей
     @Override
     public double getAverageAgeOfUsers() {
         List<User> users = usersRepository.findAll();
@@ -63,7 +58,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-//5. Вывести возраст самого высокого человека
     @Override
     public int getAgeOfTheHighest(){
         List<User> users = usersRepository.findAll();
@@ -79,7 +73,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-//6. Вывести имя и фамилию самого низкого человека
     @Override
     public String getShortestPersonFullName() {
         List<User> users = usersRepository.findAll();

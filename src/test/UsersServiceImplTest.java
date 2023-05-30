@@ -1,8 +1,15 @@
+import de.ait.app.Main;
+import de.ait.models.User;
 import de.ait.repositories.UsersRepositoryListImpl;
+import de.ait.repositories.UsersRepositoryTextFileImpl;
+import de.ait.services.UsersService;
 import de.ait.services.UsersServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,12 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UsersServiceImplTest {
     private UsersServiceImpl usersService;
+
     @BeforeEach
     void setUp() {
         this.usersService = new UsersServiceImpl(new UsersRepositoryListImpl());
+
     }
 
-    //    1. Вывести имена всех пользователей
     @Test
     void getNames() {
         List<String> actual = usersService.getNames();
@@ -24,7 +32,6 @@ class UsersServiceImplTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    //  2. Вывести фамилию самого взрослого пользователя
     @Test
     public void getLastNameOfMostAging() {
         String actuals = usersService.getLastNameOfMostAging();
@@ -32,7 +39,6 @@ class UsersServiceImplTest {
         assertEquals(expected, actuals);
     }
 
-    //  4. Вывести средний возраст всех пользователей
     @Test
     public void getAverageAgeOfUsers() {
         double actuals = usersService.getAverageAgeOfUsers();
@@ -40,7 +46,6 @@ class UsersServiceImplTest {
         assertEquals(expected, actuals);
     }
 
-    //  5. Вывести возраст самого высокого человека
     @Test
     void getAgeOfTheHighest(){
         int actual = usersService.getAgeOfTheHighest();
@@ -48,11 +53,11 @@ class UsersServiceImplTest {
         assertEquals(expected,actual);
     }
 
-//    6. Вывести имя и фамилию самого низкого человека
     @Test
     public void getShortestPersonFullName(){
         String actuals = usersService.getShortestPersonFullName();
         String expected = "Amina Zolotoverkh";
         assertEquals(expected, actuals);
     }
+
 }
